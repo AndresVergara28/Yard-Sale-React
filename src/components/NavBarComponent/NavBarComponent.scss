@@ -1,19 +1,19 @@
 .header-container {
     width: 100%;
     border-bottom: 1px solid var(--very-light-pink);
-    padding: 1rem;
+    padding: 2rem 3rem;
 
     .navbar-container {
         .nav-brand {
             img {
-                width: var(--xxlg-size);
+                width: var(--xlg-size);
             }
         }
 
         .nav-links {
             .links-item {
                 color: var(--very-light-pink);
-                font-size: var(--font-parrafo);
+                font-size: 1.4rem;
                 border: 1px solid var(--white);
                 border-radius: 8px;
 
