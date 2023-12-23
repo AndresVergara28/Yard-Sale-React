@@ -1,0 +1,40 @@
+.header-container {
+    width: 100%;
+    border-bottom: 1px solid var(--very-light-pink);
+    padding: 1rem;
+
+    .navbar-container {
+        .nav-brand {
+            img {
+                width: var(--xxlg-size);
+            }
+        }
+
+        .nav-links {
+            .links-item {
+                color: var(--very-light-pink);
+                font-size: var(--font-parrafo);
+                border: 1px solid var(--white);
+                border-radius: 8px;
+
+                &:hover {
+                    color: var(--hospital-green);
+                    border: 1px solid var(--very-light-pink);
+                }
+            }
+
+        }
+
+        .nav-login {
+            justify-content: end;
+
+            a {
+                font-size: 1rem;
+                font-weight: bolder;
+                text-decoration: none;
+                color: var(--black);
+            }
+        }
+
+    }
+}

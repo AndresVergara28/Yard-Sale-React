@@ -1,0 +1,41 @@
+.cart-widget-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 1rem;
+
+    .navbar-email {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        a {
+            p {
+                font-size: 1rem;
+                color: var(--very-light-pink);
+            }
+        }
+
+    }
+
+
+
+    .navbar-shopping-cart {
+        margin: 0 12px;
+        position: relative;
+
+        .number-over-cart {
+            background-color: var(--hospital-green);
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            top: -14px;
+            right: -10px;
+            font-size: var(--sm);
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
