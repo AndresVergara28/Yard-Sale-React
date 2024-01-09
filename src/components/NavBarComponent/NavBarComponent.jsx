@@ -3,11 +3,12 @@ import MainLogo from "./logo_yard_sale.svg";
 import { CartWidgetComponent } from "./CartWidgetComponent";
 import "./NavBarComponent.scss";
 import { Nav, NavDropdown } from "react-bootstrap";
-import { useGetAllProducts,useGetProductsCategories } from "../../hooks/useProducts";
+import { useGetProductsCategories } from "../../hooks/useProducts";
+import { Link } from "react-router-dom";
 
 const NavBarComponent = () => {
-  const {productsCategories} = useGetProductsCategories();
- /*  const categories = useGetProductsCategories();
+  const { productsCategories } = useGetProductsCategories();
+  /*  const categories = useGetProductsCategories();
   console.log(products);
   console.log(categories); */
   return (
@@ -17,22 +18,22 @@ const NavBarComponent = () => {
           <img src={MainLogo} alt="MainLogo" />
         </Navbar.Brand>
         <Nav className="nav-links">
-          <Nav.Link className="links-item" href="./">All</Nav.Link>
-          <Nav.Link className="links-item">Products</Nav.Link>
+          <Nav.Link className="links-item">
+            <Link to={"/products"}> All </Link>
+          </Nav.Link>
+
           <NavDropdown
             className="links-item"
             title="Categories"
             id="basic-nav-dropdown"
           >
-
-            {productsCategories.map((category)=>{
-              return(
-
-                <NavDropdown.Item href={`${category}`} key={category}>{category}</NavDropdown.Item>
+            {productsCategories.map((category) => {
+              return (
+                <NavDropdown.Item key={category}>
+                  <Link to={`./products/category/${category}`}>{category}</Link>
+                </NavDropdown.Item>
               );
             })}
-
-            
           </NavDropdown>
         </Nav>
         <Navbar.Collapse className="nav-login">
@@ -43,4 +44,4 @@ const NavBarComponent = () => {
   );
 };
 
-export  {NavBarComponent};
+export { NavBarComponent };

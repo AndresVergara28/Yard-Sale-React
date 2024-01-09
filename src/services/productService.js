@@ -7,8 +7,8 @@ import axios from "axios";
  * @returns {Promise}
  */
 
-export async function getProducts(limit=100) {
-    return await axios.get(`https://dummyjson.com/products?limit=${limit}`)
+export async function getProducts() {
+    return await axios.get(`https://dummyjson.com/products`)
 }
 
 export async function getProductById(id) {

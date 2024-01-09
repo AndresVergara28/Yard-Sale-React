@@ -1,10 +1,9 @@
 import React from "react";
-import { useGetAllProducts } from "../../hooks/useProducts";
-import AddToCartLogo from "../../icons/bt_add_to_cart.svg";
-import "./MainContainer.scss"
+import "./MainContainer.scss";
+import AddToCartButton from "./AddToCartButton";
 
-const MainContainer = () => {
-  const { productsData } = useGetAllProducts();
+const MainContainer = ({ productsData }) => {
+
 
   return (
     <section className="main-container">
@@ -22,9 +21,7 @@ const MainContainer = () => {
                   <p className="title-info">{product.title}</p>
                 </div>
 
-                <figure>
-                  <img src={AddToCartLogo} alt="" />
-                </figure>
+                <AddToCartButton product={product} />
               </div>
             </div>
           );
