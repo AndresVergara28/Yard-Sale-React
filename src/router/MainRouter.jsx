@@ -3,7 +3,8 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { NavBarComponent } from "../components/NavBarComponent/NavBarComponent";
 import { All } from "../pages/All";
-import {ProductsByCategory} from "../pages/ProductsByCategory";
+import { ProductsByCategory } from "../pages/ProductsByCategory";
+import { AsideItemDetail } from "../components/AsideItemDetail/AsideItemDetail";
 
 export const MainRouter = () => {
   return (
@@ -13,9 +14,10 @@ export const MainRouter = () => {
         <Route path="/products" element={<All />} />
         <Route
           path="/products/category/:category"
-          element={<ProductsByCategory/>}
+          element={<ProductsByCategory />}
         />
       </Routes>
+      <AsideItemDetail />
     </BrowserRouter>
   );
 };

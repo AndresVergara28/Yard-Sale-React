@@ -4,8 +4,11 @@ const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
 
+  
+
   const [cart, setCart] = useState([]);
-  const [quantityCart, setQuantityCart ] = useState(cart.length);
+  const [quantityCart, setQuantityCart] = useState(cart.length);
+  const [productInAside, setProductInAside] = useState({});
 
   return (
     <CartContext.Provider
@@ -13,7 +16,9 @@ const CartProvider = ({ children }) => {
         cart,
         quantityCart,
         setCart,
-        setQuantityCart
+        setQuantityCart,
+        productInAside,
+        setProductInAside,
       }}
     >
       {children}

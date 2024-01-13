@@ -1,0 +1,88 @@
+#productDetail {
+    border-radius: 8px;
+    border: 1px var(--very-light-pink) solid;
+    background-color: var(--white);
+    width: 360px;
+    height: 85vh;
+    position: absolute;
+    top: 15vh;
+    right: 0;
+
+    .product-detail-close {
+        width: 8px;
+        height: 8px;
+        background-color: var(--white);
+        cursor: pointer;
+        position: absolute;
+        top: 12px;
+        left: 24px;
+        z-index: 10;
+        padding: 16px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+    }
+
+    .product-image {
+        width: 100%;
+        height: 45vh;
+        object-fit: cover;
+        border-radius: 0 0 20px 20px
+    }
+
+    .product-info {
+        width: 100%;
+        padding: 8px 12px;
+
+
+        .product-info-price {
+            font-weight: bold;
+            font-size: var(--lg);
+            margin-top: 0;
+            margin-bottom: 4px;
+
+        }
+
+        .product-info-title {
+            color: var(--very-light-pink);
+            font-size: var(--lg);
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .product-info-description {
+            color: var(--very-light-pink);
+            font-size: var(--sm);
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+
+        .primary-button {
+            display: flex;
+            background-color: var(--hospital-green);
+            border-radius: 8px;
+            border: none;
+            color: var(--white);
+            width: 100%;
+            padding: 6px;
+            font-size: var(--md);
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            height: 50px;
+            align-items: center;
+            justify-content: center;
+
+
+        }
+    }
+
+}
+
+.inactive{
+    display: none;
+}
