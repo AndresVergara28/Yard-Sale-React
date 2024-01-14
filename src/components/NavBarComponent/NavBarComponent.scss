@@ -8,6 +8,10 @@
     top: 0;
     z-index: 15;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
     .navbar-container {
         .nav-brand {
             img {

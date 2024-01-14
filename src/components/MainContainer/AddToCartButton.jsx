@@ -26,6 +26,7 @@ const AddToCartButton = ({ product }) => {
         description: product.description,
         quantity: 1,
         price: product.price,
+        img: product.thumbnail,
       };
       cart.push(item);
       setQuantityCart(cart.length);

@@ -5,6 +5,7 @@ import { NavBarComponent } from "../components/NavBarComponent/NavBarComponent";
 import { All } from "../pages/All";
 import { ProductsByCategory } from "../pages/ProductsByCategory";
 import { AsideItemDetail } from "../components/AsideItemDetail/AsideItemDetail";
+import { AsideShopping } from "../components/AsideShopping/AsideShopping";
 
 export const MainRouter = () => {
   return (
@@ -18,6 +19,7 @@ export const MainRouter = () => {
         />
       </Routes>
       <AsideItemDetail />
+      <AsideShopping />
     </BrowserRouter>
   );
 };

@@ -15,7 +15,9 @@ const NavBarComponent = () => {
     <div className="header-container">
       <Navbar className="navbar-container">
         <Navbar.Brand className="nav-brand">
-          <img src={MainLogo} alt="MainLogo" />
+          <Link to={"./"}>
+            <img src={MainLogo} alt="MainLogo" />
+          </Link>
         </Navbar.Brand>
         <Nav className="nav-links">
           <Nav.Link className="links-item">
