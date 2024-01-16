@@ -10,14 +10,16 @@ const AsideItemDetail = () => {
   const closeAsideDetail = (e) => {
     e.preventDefault();
     const asideProductDetail = document.querySelector("#productDetail");
-    const isAsideOpen = asideProductDetail.classList.contains("inactive");
+    const isAsideOpen = asideProductDetail.classList.contains(
+      "dd-aside-description-product"
+    );
     if (!isAsideOpen) {
-      asideProductDetail.classList.add("inactive");
+      asideProductDetail.classList.add("dd-aside-description-product");
     }
   };
 
   return (
-    <aside id="productDetail" className="inactive">
+    <aside id="productDetail" className="dd-aside-description-product">
       <div
         className="product-detail-close close-product-details-button"
         onClick={closeAsideDetail}

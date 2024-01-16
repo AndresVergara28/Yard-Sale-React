@@ -5,19 +5,25 @@ import { ShoppingCartItem } from "./ShoppingCartItem";
 import { CartContext } from "../../context/CartContext";
 
 const AsideShopping = () => {
-  const { cart, setCart } = useContext(CartContext);
-  const hideASideShoppingCart = (e) => {
+  const { cart } = useContext(CartContext);
+
+  const hideAsideShoppingCart = (e) => {
     e.preventDefault();
-    const shoppingCartAside = document.querySelector("#shoppingCartContainer");
-    shoppingCartAside.classList.add("dont-display-aside");
+    const asideShoppingCart = document.querySelector("#shoppingCartContainer");
+    const isAsideShoppingCartClosed = asideShoppingCart.classList.contains(
+      "dd-aside-shopping-cart"
+    );
+    if (!isAsideShoppingCartClosed) {
+      asideShoppingCart.classList.add("dd-aside-shopping-cart");
+    }
   };
 
   return (
     <aside
       id="shoppingCartContainer"
-      className="shopping-cart-container dont-display-aside"
+      className="shopping-cart-container dd-aside-shopping-cart"
     >
-      <div class="title-container" onClick={hideASideShoppingCart}>
+      <div class="title-container" onClick={hideAsideShoppingCart}>
         <img
           src={ArrowClose}
           alt="arrow"
@@ -36,7 +42,7 @@ const AsideShopping = () => {
             <span>Total</span>
           </p>
 
-          <p className="order-total-number">$560.00</p>
+          <p className="order-total-number">${cart.reduce((acumulador, el) => acumulador + el.total, 0)}</p>
         </div>
         <button class="primary-button add-to-cart-button">Checkout</button>
       </div>

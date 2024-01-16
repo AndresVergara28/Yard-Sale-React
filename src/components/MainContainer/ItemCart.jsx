@@ -19,27 +19,34 @@ const ItemCart = ({ product, key }) => {
       price: product.price,
     };
 
-    const isAsideProductOpen =
-      asideProductDetail.classList.contains("inactive");
-    const isAsideShoppingCartOpen = asideShoppingCart.classList.contains("inactive");
+    const isAsideProductClosed = asideProductDetail.classList.contains(
+      "dd-aside-description-product"
+    );
+    const isAsideShoppingCartClosed = asideShoppingCart.classList.contains(
+      "dd-aside-shopping-cart"
+    );
 
-    if (isAsideShoppingCartOpen) {
-      if (isAsideProductOpen) {
-        // Cuando esta cerrado el asideDetailProduct
-        console.log("Estoy cerrado");
+    // primero verificamos que el aaside del carrito de compras se encuentre cerrado
+    if (isAsideShoppingCartClosed) {
+      // si se encuentra cerrado se verifica entonces que no este abierto el aside description del producto
+
+      if (isAsideProductClosed) {
+        // si el aside de descricion-producto esta cerrado, se redenriza
         setProductInAside(productChosen);
-
-        asideProductDetail.classList.remove("inactive");
+        asideProductDetail.classList.remove("dd-aside-description-product");
       } else {
-        // Cuando esta abierto el asideDetailProduct
+        // si no se encuentra cerrado, entonces se actualiza el componente con la informacion de otro producto seleccionado
         setProductInAside(productChosen);
       }
+
+      // si el aside del carrito de compras no se encuentra cerrado, se cierra y se renderiza el de descripcion-producto
     } else {
       setProductInAside(productChosen);
-      asideShoppingCart.classList.add("inactive");
-      asideProductDetail.classList.remove("inactive");
+      asideShoppingCart.classList.add("dd-aside-shopping-cart");
+      asideProductDetail.classList.remove("dd-aside-description-product");
     }
   };
+
   return (
     <div className="product-card" key={key}>
       <img

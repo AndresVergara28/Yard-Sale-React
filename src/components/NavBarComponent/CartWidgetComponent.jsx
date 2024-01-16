@@ -3,21 +3,21 @@ import { CartContext } from "../../context/CartContext";
 import CartIcon from "../../icons/icon_shopping_cart.svg";
 import "./CartWidgetComponent.scss";
 const CartWidgetComponent = () => {
-  const { cart, quantityCart } = useContext(CartContext);
-
-  const openAsideShoppinCart = (e) => {
+  const { cart } = useContext(CartContext);
+  const toggleAsideShoppingCart = (e) => {
     e.preventDefault();
     const asideShoppingCart = document.querySelector("#shoppingCartContainer");
     const asideProductDetail = document.querySelector("#productDetail");
 
-    const asideProductDetailIsClosed =
-      asideProductDetail.classList.contains("inactive");
+    const isAsideProductDetailClosed = asideProductDetail.classList.contains(
+      "dd-aside-description-product"
+    );
 
-    if (asideProductDetailIsClosed) {
-      asideShoppingCart.classList.toggle("dont-display-aside");
+    if (isAsideProductDetailClosed) {
+      asideShoppingCart.classList.toggle("dd-aside-shopping-cart");
     } else {
-      asideProductDetail.classList.add("inactive");
-      asideShoppingCart.classList.remove("dont-display-aside");
+      asideProductDetail.classList.add("dd-aside-description-product");
+      asideShoppingCart.classList.remove("dd-aside-shopping-cart");
     }
   };
 
@@ -28,9 +28,9 @@ const CartWidgetComponent = () => {
           <p>ejemplo@login.com</p>
         </a>
       </li>
-      <li className="navbar-shopping-cart" onClick={openAsideShoppinCart}>
+      <li className="navbar-shopping-cart" onClick={toggleAsideShoppingCart}>
         <img src={CartIcon} alt="shoppingCart" />
-        <div className="number-over-cart">{quantityCart}</div>
+        <div className="number-over-cart">{cart.length}</div>
       </li>
     </ul>
   );
