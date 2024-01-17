@@ -15,7 +15,7 @@ const ItemCart = ({ product, key }) => {
       id: product.id,
       title: product.title,
       description: product.description,
-      img: product.thumbnail,
+      thumbnail: product.thumbnail,
       price: product.price,
     };
 

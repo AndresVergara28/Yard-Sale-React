@@ -5,7 +5,9 @@ import "./AsideItemDetail.scss";
 import { CartContext } from "../../context/CartContext";
 
 const AsideItemDetail = () => {
-  const { productInAside, setProductInAside } = useContext(CartContext);
+  const { productInAside, addToCartFunction } = useContext(CartContext);
+
+  console.log(productInAside);
 
   const closeAsideDetail = (e) => {
     e.preventDefault();
@@ -26,13 +28,16 @@ const AsideItemDetail = () => {
       >
         <img src={IconClose} alt="icon-close-detail-aside" />
       </div>
-      <img className="product-image" src={productInAside.img} alt="LogoImage" />
+      <img className="product-image" src={productInAside.thumbnail} alt="LogoImage" />
 
       <div className="product-info">
         <p className="product-info-price"> ${productInAside.price}</p>
         <p className="product-info-title">{productInAside.title}</p>
         <p className="product-info-description">{productInAside.description}</p>
-        <button className="primary-button">
+        <button
+          className="primary-button"
+          onClick={() => addToCartFunction(productInAside)}
+        >
           <img src={AddToCartLogo} alt="add-to-cart-logo" />
           <div>
             <p>Add to Cart</p>
