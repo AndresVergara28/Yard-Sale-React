@@ -7,8 +7,6 @@ import { CartContext } from "../../context/CartContext";
 const AsideItemDetail = () => {
   const { productInAside, addToCartFunction } = useContext(CartContext);
 
-  console.log(productInAside);
-
   const closeAsideDetail = (e) => {
     e.preventDefault();
     const asideProductDetail = document.querySelector("#productDetail");
@@ -28,7 +26,11 @@ const AsideItemDetail = () => {
       >
         <img src={IconClose} alt="icon-close-detail-aside" />
       </div>
-      <img className="product-image" src={productInAside.thumbnail} alt="LogoImage" />
+      <img
+        className="product-image"
+        src={productInAside.thumbnail}
+        alt="LogoImage"
+      />
 
       <div className="product-info">
         <p className="product-info-price"> ${productInAside.price}</p>

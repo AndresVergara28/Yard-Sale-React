@@ -1,11 +1,14 @@
 import { React, createContext, useState } from "react";
+import { useGetAllProducts, useGetCategories } from "../hooks/useProducts";
 
 const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [productInAside, setProductInAside] = useState({});
-
+  const { productsData } = useGetAllProducts();
+  const { categories } = useGetCategories();
+  console.log(categories);
   function addToCartFunction(product) {
     const asideShoppingCart = document.querySelector("#shoppingCartContainer");
     const asideProductDetail = document.querySelector("#productDetail");
@@ -48,8 +51,10 @@ const CartProvider = ({ children }) => {
   return (
     <CartContext.Provider
       value={{
+        productsData,
         cart,
         productInAside,
+        categories,
         setCart,
         setProductInAside,
         addToCartFunction,

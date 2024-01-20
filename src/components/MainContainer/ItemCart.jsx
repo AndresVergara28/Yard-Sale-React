@@ -4,7 +4,7 @@ import AddToCartButton from "./AddToCartButton";
 import "./ItemCart.scss";
 import { CartContext } from "../../context/CartContext";
 
-const ItemCart = ({ product, key }) => {
+const ItemCart = ({ product }) => {
   const { setProductInAside } = useContext(CartContext);
 
   const openAsideProductDetail = (e) => {
@@ -48,7 +48,7 @@ const ItemCart = ({ product, key }) => {
   };
 
   return (
-    <div className="product-card" key={key}>
+    <div className="product-card" key={product.id}>
       <img
         className="product-cover-image"
         onClick={openAsideProductDetail}

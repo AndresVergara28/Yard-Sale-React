@@ -1,12 +1,11 @@
+import { useContext } from "react";
 import MainContainer from "../components/MainContainer/MainContainer";
-import { useGetAllProducts } from "../hooks/useProducts";
+import { CartContext } from "../context/CartContext";
 
 const All = () => {
-  const { productsData } = useGetAllProducts();
+  const  {productsData} = useContext(CartContext);
 
-  return (
-    <MainContainer productsData={productsData}/>
-  )
+  return <MainContainer productsData={productsData} />;
 };
 
 export { All };

@@ -3,14 +3,13 @@ import MainLogo from "./logo_yard_sale.svg";
 import { CartWidgetComponent } from "./CartWidgetComponent";
 import "./NavBarComponent.scss";
 import { Nav, NavDropdown } from "react-bootstrap";
-import { useGetProductsCategories } from "../../hooks/useProducts";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 
 const NavBarComponent = () => {
-  const { productsCategories } = useGetProductsCategories();
-  /*  const categories = useGetProductsCategories();
-  console.log(products);
-  console.log(categories); */
+  const { categories } = useContext(CartContext);
+
   return (
     <div className="header-container">
       <Navbar className="navbar-container">
@@ -29,7 +28,7 @@ const NavBarComponent = () => {
             title="Categories"
             id="basic-nav-dropdown"
           >
-            {productsCategories.map((category) => {
+            {categories.map((category) => {
               return (
                 <NavDropdown.Item key={category}>
                   <Link to={`./products/category/${category}`}>{category}</Link>

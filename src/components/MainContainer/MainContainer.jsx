@@ -8,9 +8,9 @@ const MainContainer = ({ productsData }) => {
       <section className="main-container">
         <div className="card-container">
           {productsData.map((product) => {
-            return <ItemCart key={product.key} product={product} />;
+            return <ItemCart key={product.id} product={product} />;
           })}
-        </div>
+        </div>  
       </section>
     </>
   );

@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  getProducts,
-  getProductsByCategory,
-  getProductsCategories,
-} from "../services/productService";
+import { getProductsByCategory } from "../services/productService";
 
 import {
   collection,
@@ -28,33 +24,40 @@ export const useGetAllProducts = () => {
   return { productsData };
 };
 
-export const useGetProductsCategories = () => {
-  const [productsCategories, setProductsCategories] = useState([]);
-  useEffect(() => {
-    getProductsCategories()
-      .then((res) => {
-        setProductsCategories(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+export const useGetCategories = () => {
+  const [categories, setCategories] = useState([]);
+  const { productsData } = useGetAllProducts();
 
-  return { productsCategories };
+  productsData.map((el) => {
+    const category = el.category;
+    const isCategoryInCategories = categories.find((el) => el === category)
+      ? true
+      : false;
+
+    if (!isCategoryInCategories) {
+      categories.push(category);
+    }
+  });
+  console.log("me ejecuto");
+
+  return { categories };
 };
 
 export const useGetProductsByCategory = (category) => {
-  const [productsData, setProductsData] = useState([]);
+  const { productsData } = useGetAllProducts();
+  const [productsCategory, setProductsCategories] = useState([]);
+  console.log(productsData);
 
+  console.log(category);
   useEffect(() => {
-    getProductsByCategory(category)
-      .then((response) => {
-        setProductsData(response.data.products);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    productsData.forEach((el) => {
+      const verificacion = el.category;
+      if (verificacion === category) {
+        productsCategory.push(el);
+      }
+    });
   }, [category]);
+  console.log(productsCategory);
 
-  return { productsData };
+  return { productsCategory };
 };
