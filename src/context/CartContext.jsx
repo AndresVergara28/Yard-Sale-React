@@ -8,7 +8,8 @@ const CartProvider = ({ children }) => {
   const [productInAside, setProductInAside] = useState({});
   const { productsData } = useGetAllProducts();
   const { categories } = useGetCategories();
-  console.log(categories);
+
+
   function addToCartFunction(product) {
     const asideShoppingCart = document.querySelector("#shoppingCartContainer");
     const asideProductDetail = document.querySelector("#productDetail");
@@ -20,10 +21,10 @@ const CartProvider = ({ children }) => {
       id: product.id,
       title: product.title,
       description: product.description,
-      quantity: 1,
+      quantity: product.quantity,
       price: product.price,
       img: product.thumbnail,
-      total: product.price,
+      total: product.total,
     };
 
     const isItemInCart = cart.find((el) => el.id === item.id) ? true : false;
@@ -33,8 +34,8 @@ const CartProvider = ({ children }) => {
         if (el.id === item.id) {
           return {
             ...el,
-            quantity: el.quantity + 1,
-            total: el.total + el.price,
+            quantity: el.quantity + product.quantity,
+            total: el.total + product.total,
           };
         } else {
           return el;
@@ -46,6 +47,7 @@ const CartProvider = ({ children }) => {
       newCart.push(item);
       setCart(newCart);
     }
+
   }
 
   return (

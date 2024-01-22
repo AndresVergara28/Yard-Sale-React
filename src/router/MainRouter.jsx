@@ -6,6 +6,7 @@ import { All } from "../pages/All";
 import { ProductsByCategory } from "../pages/ProductsByCategory";
 import { AsideItemDetail } from "../components/AsideItemDetail/AsideItemDetail";
 import { AsideShopping } from "../components/AsideShopping/AsideShopping";
+import Checkout from "../pages/Checkout";
 
 export const MainRouter = () => {
   return (
@@ -17,6 +18,7 @@ export const MainRouter = () => {
           path="/products/category/:category"
           element={<ProductsByCategory />}
         />
+        <Route path="/checkout" element={<Checkout/>}/>
       </Routes>
       <AsideItemDetail />
       <AsideShopping />

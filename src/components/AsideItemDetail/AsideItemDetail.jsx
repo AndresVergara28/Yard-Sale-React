@@ -5,7 +5,8 @@ import "./AsideItemDetail.scss";
 import { CartContext } from "../../context/CartContext";
 
 const AsideItemDetail = () => {
-  const { productInAside, addToCartFunction } = useContext(CartContext);
+  const { productInAside, setProductInAside, addToCartFunction } =
+    useContext(CartContext);
 
   const closeAsideDetail = (e) => {
     e.preventDefault();
@@ -18,26 +19,66 @@ const AsideItemDetail = () => {
     }
   };
 
+  const addOne = (e) => {
+    e.preventDefault();
+    setProductInAside({
+      ...productInAside,
+      quantity: productInAside.quantity + 1,
+      total: productInAside.total + productInAside.price,
+    });
+  };
+
+  const remOve = (e) => {
+    e.preventDefault();
+    if (productInAside.quantity > 1) {
+      setProductInAside({
+        ...productInAside,
+        quantity: productInAside.quantity - 1,
+        total: productInAside.total - productInAside.price,
+      });
+    }
+  };
+
   return (
     <aside id="productDetail" className="dd-aside-description-product">
-      <div
-        className="product-detail-close close-product-details-button"
-        onClick={closeAsideDetail}
-      >
-        <img src={IconClose} alt="icon-close-detail-aside" />
+      <div className="product-cover">
+        <div
+          className="close-button close-product-details-button"
+          onClick={closeAsideDetail}
+        >
+          <img src={IconClose} alt="icon-close-detail-aside" />
+        </div>
+
+        <img
+          className="product-image"
+          src={productInAside.thumbnail}
+          alt="LogoImage"
+        />
       </div>
-      <img
-        className="product-image"
-        src={productInAside.thumbnail}
-        alt="LogoImage"
-      />
 
       <div className="product-info">
-        <p className="product-info-price"> ${productInAside.price}</p>
-        <p className="product-info-title">{productInAside.title}</p>
+        <div className="product-info-first-line">
+          <p className="product-info-title">{productInAside.title}</p>
+          <p className="product-info-price"> ${productInAside.price}</p>
+        </div>
         <p className="product-info-description">{productInAside.description}</p>
+      </div>
+
+      <div className="product-checkout">
+        <div className="modify-product">
+          <p className="button-modify-quantity" onClick={remOve}>
+            {" "}
+            -{" "}
+          </p>
+          <p className="quantity-value">{productInAside.quantity}</p>
+          <p className="button-modify-quantity" onClick={addOne}>
+            {" "}
+            +{" "}
+          </p>
+        </div>
+
         <button
-          className="primary-button"
+          className="add-product"
           onClick={() => addToCartFunction(productInAside)}
         >
           <img src={AddToCartLogo} alt="add-to-cart-logo" />

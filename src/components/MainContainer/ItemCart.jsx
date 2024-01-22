@@ -6,18 +6,20 @@ import { CartContext } from "../../context/CartContext";
 
 const ItemCart = ({ product }) => {
   const { setProductInAside } = useContext(CartContext);
+  const productChosen = {
+    id: product.id,
+    title: product.title,
+    description: product.description,
+    thumbnail: product.thumbnail,
+    price: product.price,
+    quantity: 1,
+    total: product.price,
+  };
 
   const openAsideProductDetail = (e) => {
     e.preventDefault();
     const asideProductDetail = document.querySelector("#productDetail");
     const asideShoppingCart = document.querySelector("#shoppingCartContainer");
-    const productChosen = {
-      id: product.id,
-      title: product.title,
-      description: product.description,
-      thumbnail: product.thumbnail,
-      price: product.price,
-    };
 
     const isAsideProductClosed = asideProductDetail.classList.contains(
       "dd-aside-description-product"
@@ -61,7 +63,7 @@ const ItemCart = ({ product }) => {
           <p className="title-info">{product.title}</p>
         </div>
 
-        <AddToCartButton product={product} />
+        <AddToCartButton product={productChosen} />
       </div>
     </div>
   );

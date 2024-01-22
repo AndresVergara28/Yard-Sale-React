@@ -3,7 +3,26 @@ import IconClose from "../../icons/icon_close.png";
 import { CartContext } from "../../context/CartContext";
 
 const ShoppingCartItem = ({ product }) => {
-  const { cart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
+
+  const removeItemFromCart = (e) => {
+    e.preventDefault();
+    const newCart = [...cart];
+
+
+    const getIndex = (id) => {
+      for (let i = 0; i < cart.length; i++) {
+        const identificador = cart[i].id;
+        if (identificador === id) {
+          return i;
+        }
+      }
+    };
+
+    const position = getIndex(product.id);
+    newCart.splice(position, 1);
+    setCart(newCart);
+  };
 
   return (
     <div class="shopping-cart">
@@ -13,8 +32,8 @@ const ShoppingCartItem = ({ product }) => {
       </figure>
       <p className="shopping-cart-title">{product.title}</p>
       <p className="shopping-cart-price">${product.total}</p>
-      <div class="product-detail-close">
-        <img src={IconClose} alt="close" />
+      <div class="product-detail-close" onClick={removeItemFromCart}>
+        <p>x</p>
       </div>
     </div>
   );

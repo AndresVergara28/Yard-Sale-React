@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { getProductsByCategory } from "../services/productService";
 
 import {
   collection,
@@ -7,6 +6,8 @@ import {
   doc,
   getDoc,
   getFirestore,
+  query,
+  where,
 } from "firebase/firestore";
 
 export const useGetAllProducts = () => {
@@ -25,9 +26,8 @@ export const useGetAllProducts = () => {
 };
 
 export const useGetCategories = () => {
-  const [categories, setCategories] = useState([]);
   const { productsData } = useGetAllProducts();
-
+  const [categories, setCategories] = useState([]);
   productsData.map((el) => {
     const category = el.category;
     const isCategoryInCategories = categories.find((el) => el === category)
@@ -38,26 +38,25 @@ export const useGetCategories = () => {
       categories.push(category);
     }
   });
-  console.log("me ejecuto");
-
   return { categories };
 };
 
 export const useGetProductsByCategory = (category) => {
-  const { productsData } = useGetAllProducts();
-  const [productsCategory, setProductsCategories] = useState([]);
-  console.log(productsData);
+  const [productsData, setProductsData] = useState([]);
 
-  console.log(category);
   useEffect(() => {
-    productsData.forEach((el) => {
-      const verificacion = el.category;
-      if (verificacion === category) {
-        productsCategory.push(el);
-      }
+    const db = getFirestore();
+    const q = query(
+      collection(db, "products"),
+      where("category", "==", category)
+    );
+
+    getDocs(q).then((snapshot) => {
+      setProductsData(
+        snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+      );
     });
   }, [category]);
-  console.log(productsCategory);
 
-  return { productsCategory };
+  return { productsData };
 };

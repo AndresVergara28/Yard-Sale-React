@@ -3,6 +3,7 @@ import ArrowClose from "../../icons/flechita.svg";
 import "./AsideShopping.scss";
 import { ShoppingCartItem } from "./ShoppingCartItem";
 import { CartContext } from "../../context/CartContext";
+import { Link } from "react-router-dom";
 
 const AsideShopping = () => {
   const { cart } = useContext(CartContext);
@@ -44,7 +45,10 @@ const AsideShopping = () => {
 
           <p className="order-total-number">${cart.reduce((acumulador, el) => acumulador + el.total, 0)}</p>
         </div>
+        <Link to={"/checkout"}>
         <button class="primary-button add-to-cart-button">Checkout</button>
+        
+        </Link>
       </div>
     </aside>
   );
