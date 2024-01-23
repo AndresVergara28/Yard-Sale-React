@@ -5,12 +5,15 @@ import "./AsideItemDetail.scss";
 import { CartContext } from "../../context/CartContext";
 
 const AsideItemDetail = () => {
-  const { productInAside, setProductInAside, addToCartFunction } =
-    useContext(CartContext);
+  const {
+    productInAside,
+    setProductInAside,
+    addToCartFunction,
+    asideProductDetail,
+  } = useContext(CartContext);
 
   const closeAsideDetail = (e) => {
     e.preventDefault();
-    const asideProductDetail = document.querySelector("#productDetail");
     const isAsideOpen = asideProductDetail.classList.contains(
       "dd-aside-description-product"
     );
@@ -28,7 +31,7 @@ const AsideItemDetail = () => {
     });
   };
 
-  const remOve = (e) => {
+  const remOne = (e) => {
     e.preventDefault();
     if (productInAside.quantity > 1) {
       setProductInAside({
@@ -40,7 +43,7 @@ const AsideItemDetail = () => {
   };
 
   return (
-    <aside id="productDetail" className="dd-aside-description-product">
+    <aside id="productDetail" className="item-detail-container dd-aside-description-product">
       <div className="product-cover">
         <div
           className="close-button close-product-details-button"
@@ -59,14 +62,14 @@ const AsideItemDetail = () => {
       <div className="product-info">
         <div className="product-info-first-line">
           <p className="product-info-title">{productInAside.title}</p>
-          <p className="product-info-price"> ${productInAside.price}</p>
+          <p className="product-info-price"> ${productInAside.price} / u</p>
         </div>
         <p className="product-info-description">{productInAside.description}</p>
       </div>
 
       <div className="product-checkout">
         <div className="modify-product">
-          <p className="button-modify-quantity" onClick={remOve}>
+          <p className="button-modify-quantity" onClick={remOne}>
             {" "}
             -{" "}
           </p>

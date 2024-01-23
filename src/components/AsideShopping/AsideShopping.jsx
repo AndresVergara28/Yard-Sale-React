@@ -6,11 +6,10 @@ import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom";
 
 const AsideShopping = () => {
-  const { cart } = useContext(CartContext);
+  const { cart, asideShoppingCart } = useContext(CartContext);
 
   const hideAsideShoppingCart = (e) => {
     e.preventDefault();
-    const asideShoppingCart = document.querySelector("#shoppingCartContainer");
     const isAsideShoppingCartClosed = asideShoppingCart.classList.contains(
       "dd-aside-shopping-cart"
     );
@@ -21,7 +20,7 @@ const AsideShopping = () => {
 
   return (
     <aside
-      id="shoppingCartContainer"
+      id="shoppingCart"
       className="shopping-cart-container dd-aside-shopping-cart"
     >
       <div class="title-container" onClick={hideAsideShoppingCart}>
@@ -45,9 +44,8 @@ const AsideShopping = () => {
 
           <p className="order-total-number">${cart.reduce((acumulador, el) => acumulador + el.total, 0)}</p>
         </div>
-        <Link to={"/checkout"}>
-        <button class="primary-button add-to-cart-button">Checkout</button>
-        
+        <Link to={"/checkout"} onClick={()=>{asideShoppingCart.classList.add("dd-aside-shopping-cart")}}>
+        <button class="primary-button add-to-cart-button">Checkout</button> 
         </Link>
       </div>
     </aside>

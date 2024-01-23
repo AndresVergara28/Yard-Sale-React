@@ -3,12 +3,11 @@ import { CartContext } from "../../context/CartContext";
 import CartIcon from "../../icons/icon_shopping_cart.svg";
 import "./CartWidgetComponent.scss";
 const CartWidgetComponent = () => {
-  const { cart } = useContext(CartContext);
-  
+  const { cart, asideShoppingCart, asideProductDetail } =
+    useContext(CartContext);
+
   const toggleAsideShoppingCart = (e) => {
     e.preventDefault();
-    const asideShoppingCart = document.querySelector("#shoppingCartContainer");
-    const asideProductDetail = document.querySelector("#productDetail");
 
     const isAsideProductDetailClosed = asideProductDetail.classList.contains(
       "dd-aside-description-product"

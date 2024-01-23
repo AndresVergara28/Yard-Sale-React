@@ -1,4 +1,4 @@
-#productDetail {
+.item-detail-container {
     border-radius: 8px;
     border: 1px var(--very-light-pink) solid;
     background-color: var(--white);
@@ -50,9 +50,8 @@
             }
 
             .product-info-title {
-                font-weight: bold;
                 font-size: 1.6rem;
-                color: var(--very-light-pink);
+                color: var(--black);
             }
 
 
@@ -81,17 +80,16 @@
             align-items: center;
 
             .button-modify-quantity {
+                background-color: var(--text-input-field);
                 border: 1px var(--very-light-pink) solid;
                 border-radius: 8px;
                 padding: 0.4rem 2.8rem;
                 color: var(--very-light-pink);
                 font-size: var(--font-parrafo);
                 cursor: pointer;
-
                 &:hover{
-                    background-color: var(--hospital-green);
-                    color: var(--white);
-                    border: 1px var(--white) solid;
+                    color: var(--black);
+                    border: 1px solid var(--black);
                 }
             }
 

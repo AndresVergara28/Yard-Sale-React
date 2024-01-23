@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import "./CheckoutComponent.scss";
 import { CartContext } from "../../context/CartContext";
-import ShoppingCartItem from "./ShoppingCartItem";
+import { ShoppingCartItem } from "../AsideShopping/ShoppingCartItem";
 
 const CheckoutComponent = () => {
   const { cart } = useContext(CartContext);
+
   return (
     <main className="container-fluid">
       <section className="row resumen-compras-container">
@@ -90,18 +91,28 @@ const CheckoutComponent = () => {
             </div>
 
             <div className="buttons-info">
-              <input className="button-to-pay" type="submit" value="PAGAR" id="pagar-btn" />
-              <input className="button-to-reset" type="reset" value="LIMPIAR" id="reset-btn" />
+              <input
+                className="button-to-pay"
+                type="submit"
+                value="PAGAR"
+                id="pagar-btn"
+              />
+              <input
+                className="button-to-reset"
+                type="reset"
+                value="LIMPIAR"
+                id="reset-btn"
+              />
             </div>
           </form>
         </div>
 
         <aside className="col-lg-5 col-md-12 purchase-summary">
-            <h3 className="purchase-summary-title">Resumen de articulos</h3>
-          <div className="products-section-container" id="carrito-de-compras">
+          <h3 className="purchase-summary-title">Resumen de articulos</h3>
+          <div className="shopping-cart-list" id="carrito-de-compras">
             {
               cart.map((el) => {
-                return <ShoppingCartItem key={el.id} product={el} />;
+                return <ShoppingCartItem key={el.id} product={el}/>;
               }) /* Tu contenido de productos aquí */
             }
           </div>
@@ -110,7 +121,7 @@ const CheckoutComponent = () => {
             <div className="discount-container">
               <label for="coupon" className="discount-label">
                 <input
-                className="discount-input"
+                  className="discount-input"
                   type="text"
                   name="nombre"
                   id="coupon"

@@ -5,7 +5,8 @@ import "./ItemCart.scss";
 import { CartContext } from "../../context/CartContext";
 
 const ItemCart = ({ product }) => {
-  const { setProductInAside } = useContext(CartContext);
+  const { setProductInAside, asideProductDetail, asideShoppingCart } =
+    useContext(CartContext);
   const productChosen = {
     id: product.id,
     title: product.title,
@@ -18,8 +19,6 @@ const ItemCart = ({ product }) => {
 
   const openAsideProductDetail = (e) => {
     e.preventDefault();
-    const asideProductDetail = document.querySelector("#productDetail");
-    const asideShoppingCart = document.querySelector("#shoppingCartContainer");
 
     const isAsideProductClosed = asideProductDetail.classList.contains(
       "dd-aside-description-product"

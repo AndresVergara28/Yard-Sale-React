@@ -9,10 +9,10 @@ const CartProvider = ({ children }) => {
   const { productsData } = useGetAllProducts();
   const { categories } = useGetCategories();
 
+  const asideShoppingCart = document.querySelector("#shoppingCart");
+  const asideProductDetail = document.querySelector("#productDetail");
 
   function addToCartFunction(product) {
-    const asideShoppingCart = document.querySelector("#shoppingCartContainer");
-    const asideProductDetail = document.querySelector("#productDetail");
 
     asideShoppingCart.classList.remove("dd-aside-shopping-cart");
     asideProductDetail.classList.add("dd-aside-description-product");
@@ -47,7 +47,6 @@ const CartProvider = ({ children }) => {
       newCart.push(item);
       setCart(newCart);
     }
-
   }
 
   return (
@@ -57,6 +56,8 @@ const CartProvider = ({ children }) => {
         cart,
         productInAside,
         categories,
+        asideProductDetail,
+        asideShoppingCart,
         setCart,
         setProductInAside,
         addToCartFunction,
