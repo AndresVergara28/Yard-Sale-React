@@ -1,17 +1,60 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./CheckoutComponent.scss";
 import { CartContext } from "../../context/CartContext";
 import { ShoppingCartItem } from "../AsideShopping/ShoppingCartItem";
+import { useCreateOrder } from "../../hooks/useProducts";
 
 const CheckoutComponent = () => {
-  const { cart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [country, setCountry] = useState("");
+  const [address, setAddress] = useState("");
+
+  const order = {
+    buyer: {
+      name: firstName,
+      lastName: lastName,
+      phone: phone,
+      email: email,
+      country: country,
+      address: address,
+    },
+    items: cart.map((el) => {
+      return {
+        id: el.id,
+        name: el.title,
+        price: el.price,
+        quantity: el.quantity,
+        total: el.total,
+      };
+    }),
+    total: cart.reduce((acumulador, el) => acumulador + el.total, 0),
+  };
+
+  const mandarPedido = (e) => {
+    e.preventDefault();
+
+    if (cart.length > 0) {
+      useCreateOrder(order);
+      setTimeout(() => {
+        document.querySelector(".form").reset();
+        setCart([]);
+      }, 1000);
+    } else {
+      console.log("selecciona por lo menos un producto");
+    }
+  };
 
   return (
     <main className="container-fluid">
       <section className="row resumen-compras-container">
         <div className="col-lg-7 col-md-12 payment-summary">
           <h1 className="payment-summary-title">finalizar compra</h1>
-          <form action="" className="form">
+          <form action="" className="form" onSubmit={mandarPedido}>
             <div className="contact-info">
               <h2>Información de Contacto</h2>
               <label for="name">
@@ -22,6 +65,9 @@ const CheckoutComponent = () => {
                   placeholder="Nombre"
                   autoComplete="cc-given-name"
                   required
+                  onChange={(e) => {
+                    setFirstName(e.target.value);
+                  }}
                 />
               </label>
               <label for="family-name">
@@ -32,6 +78,9 @@ const CheckoutComponent = () => {
                   placeholder="Apellido"
                   autoComplete="family-name"
                   required
+                  onChange={(e) => {
+                    setLastName(e.target.value);
+                  }}
                 />
               </label>
               <label for="phone">
@@ -42,6 +91,9 @@ const CheckoutComponent = () => {
                   placeholder="+57 (320)-345-5678"
                   autoComplete="tel"
                   required
+                  onChange={(e) => {
+                    setPhone(e.target.value);
+                  }}
                 />
               </label>
               <label for="email" className="email-label">
@@ -52,6 +104,9 @@ const CheckoutComponent = () => {
                   placeholder="alguien123@ejemplo.com"
                   autoComplete="email"
                   required
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
                 />
               </label>
             </div>
@@ -66,6 +121,9 @@ const CheckoutComponent = () => {
                   placeholder="Atlantico"
                   autoComplete="country-name"
                   required
+                  onChange={(e) => {
+                    setCountry(e.target.value);
+                  }}
                 />
               </label>
               <label for="address" className="direccion-envio">
@@ -74,6 +132,10 @@ const CheckoutComponent = () => {
                   name="address"
                   id="address"
                   placeholder="Cra 1 # 3-50"
+                  required
+                  onChange={(e) => {
+                    setAddress(e.target.value);
+                  }}
                 />
               </label>
             </div>
@@ -81,11 +143,21 @@ const CheckoutComponent = () => {
             <div className="payment-method">
               <h2>Método de pago</h2>
               <label for="creditCard">
-                <input type="radio" name="payment-type" id="creditCard" />
+                <input
+                  type="radio"
+                  name="payment-type"
+                  id="creditCard"
+                  required
+                />
                 <span>Credit Card</span>
               </label>
               <label for="debitCard">
-                <input type="radio" name="payment-type" id="debitCard" />
+                <input
+                  type="radio"
+                  name="payment-type"
+                  id="debitCard"
+                  required
+                />
                 <span>Debit Card</span>
               </label>
             </div>
@@ -112,7 +184,7 @@ const CheckoutComponent = () => {
           <div className="shopping-cart-list" id="carrito-de-compras">
             {
               cart.map((el) => {
-                return <ShoppingCartItem key={el.id} product={el}/>;
+                return <ShoppingCartItem key={el.id} product={el} />;
               }) /* Tu contenido de productos aquí */
             }
           </div>

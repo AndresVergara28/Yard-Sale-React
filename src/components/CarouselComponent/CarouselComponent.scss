@@ -1,0 +1,28 @@
+.carousel-container {
+    width: 100%;
+    height: 85vh;
+
+    .carousel-item {
+        width: 100%;
+        height: 85vh;
+
+        .carousel-item-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-caption {
+            h5 {
+                text-transform: uppercase;
+                color: var(--white);
+                font-size: xx-large;
+            }
+
+            p {
+                color: var(--very-light-pink);
+                font-size: var(--font-parrafo);
+            }
+        }
+    }
+}

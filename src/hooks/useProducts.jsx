@@ -8,6 +8,7 @@ import {
   getFirestore,
   query,
   where,
+  addDoc,
 } from "firebase/firestore";
 
 export const useGetAllProducts = () => {
@@ -59,4 +60,10 @@ export const useGetProductsByCategory = (category) => {
   }, [category]);
 
   return { productsData };
+};
+
+export const useCreateOrder = (order) => {
+  const db = getFirestore();
+  const ordersCollection = collection(db, "orders");
+  addDoc(ordersCollection, order);
 };
