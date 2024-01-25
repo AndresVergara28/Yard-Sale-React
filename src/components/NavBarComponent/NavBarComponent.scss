@@ -7,14 +7,60 @@
     position: sticky;
     top: 0;
     z-index: 15;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
 
     .navbar-container {
+        display: flex;
+        align-items: center;
+
+        .menu-mobile-component {
+            display: none;
+
+            .menu-mobile-icon {
+                width: 3rem;
+                cursor: pointer;
+            }
+
+            .menu-mobile-dropdown {
+                margin: 0;
+                padding: 0;
+
+                .menu-mobile-dropdown-ul {
+                    position: fixed;
+                    top: 15vh;
+                    left: 0;
+                    width: 100%;
+                    flex-direction: column;
+                    display: flex;
+                    border-radius: 8px;
+                    background-color: var(--white);
+                    border: 1px solid var(--very-light-pink);
+                    color: var(--very-light-pink);
+                    padding: 5px 0;
+
+                    .menu-mobile-dropdown-item {
+                        color: var(--very-light-pink);
+                        font-size: 1.4rem;
+                        border: 1px solid var(--white);
+                        border-radius: 8px;
+                        padding: 5px 10px;
+
+                        &:hover {
+                            color: var(--hospital-green);
+                            border: 1px solid var(--very-light-pink);
+                        }
+                    }
+                }
+            }
+
+        }
+
         .nav-brand {
-            img {
+            display: flex;
+
+            .main-logo {
                 width: var(--xlg-size);
             }
         }
@@ -46,4 +92,52 @@
         }
 
     }
+}
+
+.inactive {
+    display: none;
+}
+
+
+@media (max-width: 576px) {
+
+    .header-container {
+
+        .navbar-container {
+
+
+
+            .nav-brand {
+                display: flex;
+                align-items: center;
+                .menu-mobile-component {
+                    display: block;
+
+                }
+
+                .main-logo {
+                    margin-left: 2rem;
+                }
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-login {
+                justify-content: end;
+
+                a {
+                    display: none;
+                    font-size: 1rem;
+                    font-weight: bolder;
+                    text-decoration: none;
+                    color: var(--black);
+                }
+            }
+
+        }
+    }
+
+
 }

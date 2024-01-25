@@ -123,3 +123,11 @@
 .dd-aside-description-product {
     display: none;
 }
+
+@media (max-width:576px) {
+
+    .item-detail-container{
+        width: 100%;
+    }
+    
+}

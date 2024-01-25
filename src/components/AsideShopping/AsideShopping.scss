@@ -227,3 +227,11 @@
 .dd-aside-shopping-cart {
     display: none;
 }
+
+@media (max-width:576px) {
+
+    .shopping-cart-container{
+        width: 100%;
+    }
+    
+}

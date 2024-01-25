@@ -25,6 +25,10 @@
         margin: 0 12px;
         position: relative;
 
+        .img-for-cart {
+            width: 2.5rem;
+        }
+
         .number-over-cart {
             background-color: var(--hospital-green);
             color: var(--black);

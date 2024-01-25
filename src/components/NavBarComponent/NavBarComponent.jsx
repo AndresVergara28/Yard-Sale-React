@@ -6,6 +6,7 @@ import { Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
+import MenuMobile from "./MenuMobile";
 
 const NavBarComponent = () => {
   const { categories } = useContext(CartContext);
@@ -14,9 +15,11 @@ const NavBarComponent = () => {
     <div className="header-container">
       <Navbar className="navbar-container">
         <Navbar.Brand className="nav-brand">
+          <MenuMobile categories={categories} />
           <Link to={"./"}>
-            <img src={MainLogo} alt="MainLogo" />
+            <img src={MainLogo} alt="MainLogo" className="main-logo"/>
           </Link>
+
         </Navbar.Brand>
         <Nav className="nav-links">
           <Nav.Link className="links-item">
@@ -38,7 +41,7 @@ const NavBarComponent = () => {
           </NavDropdown>
         </Nav>
         <Navbar.Collapse className="nav-login">
-          <CartWidgetComponent />
+          <CartWidgetComponent/>
         </Navbar.Collapse>
       </Navbar>
     </div>

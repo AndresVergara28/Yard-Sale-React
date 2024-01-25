@@ -29,7 +29,7 @@ const CartWidgetComponent = () => {
         </a>
       </li>
       <li className="navbar-shopping-cart" onClick={toggleAsideShoppingCart}>
-        <img src={CartIcon} alt="shoppingCart" />
+        <img src={CartIcon} alt="shoppingCart" className="img-for-cart" />
         <div className="number-over-cart">{cart.length}</div>
       </li>
     </ul>
