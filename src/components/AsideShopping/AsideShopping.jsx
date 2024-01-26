@@ -42,10 +42,17 @@ const AsideShopping = () => {
             <span>Total</span>
           </p>
 
-          <p className="order-total-number">${cart.reduce((acumulador, el) => acumulador + el.total, 0)}</p>
+          <p className="order-total-number">
+            ${cart.reduce((acumulador, el) => acumulador + el.total, 0)}
+          </p>
         </div>
-        <Link to={"/checkout"} onClick={()=>{asideShoppingCart.classList.add("dd-aside-shopping-cart")}}>
-        <button class="primary-button add-to-cart-button">Checkout</button> 
+        <Link
+          to={"/checkout"}
+          onClick={() => {
+            asideShoppingCart.classList.add("dd-aside-shopping-cart");
+          }}
+        >
+          <button class="primary-button add-to-cart-button">Checkout</button>
         </Link>
       </div>
     </aside>

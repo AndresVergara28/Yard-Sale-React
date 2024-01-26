@@ -10,6 +10,7 @@ const AsideItemDetail = () => {
     setProductInAside,
     addToCartFunction,
     asideProductDetail,
+    dropDownMenu,
   } = useContext(CartContext);
 
   const closeAsideDetail = (e) => {
@@ -17,6 +18,12 @@ const AsideItemDetail = () => {
     const isAsideOpen = asideProductDetail.classList.contains(
       "dd-aside-description-product"
     );
+
+    const isDropDownMenuOpen = dropDownMenu.classList.contains("inactive")
+      ? false
+      : true;
+
+    console.log(isDropDownMenuOpen);
     if (!isAsideOpen) {
       asideProductDetail.classList.add("dd-aside-description-product");
     }
@@ -43,7 +50,10 @@ const AsideItemDetail = () => {
   };
 
   return (
-    <aside id="productDetail" className="item-detail-container dd-aside-description-product">
+    <aside
+      id="productDetail"
+      className="item-detail-container dd-aside-description-product"
+    >
       <div className="product-cover">
         <div
           className="close-button close-product-details-button"

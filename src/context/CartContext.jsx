@@ -11,6 +11,7 @@ const CartProvider = ({ children }) => {
 
   const asideShoppingCart = document.querySelector("#shoppingCart");
   const asideProductDetail = document.querySelector("#productDetail");
+  const dropDownMenu = document.querySelector("#dropDownMenu");
 
   function addToCartFunction(product) {
 
@@ -58,6 +59,7 @@ const CartProvider = ({ children }) => {
         categories,
         asideProductDetail,
         asideShoppingCart,
+        dropDownMenu,
         setCart,
         setProductInAside,
         addToCartFunction,

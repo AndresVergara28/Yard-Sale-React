@@ -3,21 +3,29 @@ import { CartContext } from "../../context/CartContext";
 import CartIcon from "../../icons/icon_shopping_cart.svg";
 import "./CartWidgetComponent.scss";
 const CartWidgetComponent = () => {
-  const { cart, asideShoppingCart, asideProductDetail } =
+  const { cart, asideShoppingCart, asideProductDetail, dropDownMenu } =
     useContext(CartContext);
 
   const toggleAsideShoppingCart = (e) => {
     e.preventDefault();
 
-    const isAsideProductDetailClosed = asideProductDetail.classList.contains(
+    const isAsideProductDetailOpened = asideProductDetail.classList.contains(
       "dd-aside-description-product"
-    );
+    )
+      ? false
+      : true;
 
-    if (isAsideProductDetailClosed) {
+    const isDropDownMenuOpened = dropDownMenu.classList.contains("inactive")
+      ? false
+      : true;
+
+    if (isAsideProductDetailOpened || isDropDownMenuOpened) {
+      asideProductDetail.classList.add("dd-aside-description-product");
+      dropDownMenu.classList.add("inactive");
+
       asideShoppingCart.classList.toggle("dd-aside-shopping-cart");
     } else {
-      asideProductDetail.classList.add("dd-aside-description-product");
-      asideShoppingCart.classList.remove("dd-aside-shopping-cart");
+      asideShoppingCart.classList.toggle("dd-aside-shopping-cart");
     }
   };
 

@@ -5,8 +5,12 @@ import "./ItemCart.scss";
 import { CartContext } from "../../context/CartContext";
 
 const ItemCart = ({ product }) => {
-  const { setProductInAside, asideProductDetail, asideShoppingCart } =
-    useContext(CartContext);
+  const {
+    setProductInAside,
+    asideProductDetail,
+    asideShoppingCart,
+    dropDownMenu,
+  } = useContext(CartContext);
   const productChosen = {
     id: product.id,
     title: product.title,
@@ -19,31 +23,22 @@ const ItemCart = ({ product }) => {
 
   const openAsideProductDetail = (e) => {
     e.preventDefault();
-
-    const isAsideProductClosed = asideProductDetail.classList.contains(
-      "dd-aside-description-product"
-    );
-    const isAsideShoppingCartClosed = asideShoppingCart.classList.contains(
+    const isAsideShoppingCartOpened = asideShoppingCart.classList.contains(
       "dd-aside-shopping-cart"
-    );
+    )
+      ? false
+      : true;
 
-    // primero verificamos que el aaside del carrito de compras se encuentre cerrado
-    if (isAsideShoppingCartClosed) {
-      // si se encuentra cerrado se verifica entonces que no este abierto el aside description del producto
-
-      if (isAsideProductClosed) {
-        // si el aside de descricion-producto esta cerrado, se redenriza
-        setProductInAside(productChosen);
-        asideProductDetail.classList.remove("dd-aside-description-product");
-      } else {
-        // si no se encuentra cerrado, entonces se actualiza el componente con la informacion de otro producto seleccionado
-        setProductInAside(productChosen);
-      }
-
-      // si el aside del carrito de compras no se encuentra cerrado, se cierra y se renderiza el de descripcion-producto
+    const isDropDownMenuOpened = dropDownMenu.classList.contains("inactive")
+      ? false
+      : true;
+    if (isAsideShoppingCartOpened || isDropDownMenuOpened) {
+      dropDownMenu.classList.add("inactive");
+      asideShoppingCart.classList.add("dd-aside-shopping-cart");
+      setProductInAside(productChosen);
+      asideProductDetail.classList.remove("dd-aside-description-product");
     } else {
       setProductInAside(productChosen);
-      asideShoppingCart.classList.add("dd-aside-shopping-cart");
       asideProductDetail.classList.remove("dd-aside-description-product");
     }
   };
