@@ -60,17 +60,17 @@
                 }
 
                 .delete-icon {
-                    position:absolute;
+                    position: absolute;
                     top: -0;
                     background-color: var(--white);
                     border: 1px var(--very-light-pink) solid;
                     border-radius: 50%;
-                   
+
                     padding: 0.1rem 0.5rem;
                     color: var(--very-light-pink);
                     cursor: pointer;
 
-                    &:hover{
+                    &:hover {
                         color: red;
                         border: 1px solid red;
                     }
@@ -230,8 +230,9 @@
 
 @media (max-width:576px) {
 
-    .shopping-cart-container{
+    .shopping-cart-container {
         width: 100%;
+        height: 85vh;
     }
-    
+
 }

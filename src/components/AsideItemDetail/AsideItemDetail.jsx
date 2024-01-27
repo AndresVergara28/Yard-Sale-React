@@ -23,7 +23,6 @@ const AsideItemDetail = () => {
       ? false
       : true;
 
-    console.log(isDropDownMenuOpen);
     if (!isAsideOpen) {
       asideProductDetail.classList.add("dd-aside-description-product");
     }
