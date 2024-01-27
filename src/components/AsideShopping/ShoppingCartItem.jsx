@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const ShoppingCartItem = ({ product }) => {
   const { cart, setCart } = useContext(CartContext);
-
+  const MySwal = withReactContent(Swal);
   const item = {
     id: product.id,
     title: product.title,
@@ -16,18 +18,40 @@ const ShoppingCartItem = ({ product }) => {
 
   const removeItemFromCart = (e) => {
     e.preventDefault();
-    const newCart = [...cart];
-    const getIndex = (id) => {
-      for (let i = 0; i < cart.length; i++) {
-        const identificador = cart[i].id;
-        if (identificador === id) {
-          return i;
-        }
+
+    MySwal.fire({
+      text: `¿Deseas remover el item ${product.title}? `,
+      icon: "question",
+      showCancelButton: true,
+      showConfirmButton: true,
+      confirmButtonText: "continuar",
+      cancelButtonText: "cancelar",
+      confirmButtonColor: "#ACD9B2",
+    }).then((resp) => {
+      MySwal.fire({
+        title:"Item Removido",
+        icon:"success"
+      })
+      if (resp.isConfirmed) {
+        const newCart = [...cart];
+        const getIndex = (id) => {
+          for (let i = 0; i < cart.length; i++) {
+            const identificador = cart[i].id;
+            if (identificador === id) {
+              return i;
+            }
+          }
+        };
+        const position = getIndex(product.id);
+        newCart.splice(position, 1);
+        setCart(newCart);
+      }else{
+        MySwal.fire({
+          title:"Item NO removido",
+          icon:"error"
+        })
       }
-    };
-    const position = getIndex(product.id);
-    newCart.splice(position, 1);
-    setCart(newCart);
+    });
   };
 
   const addOne = (e) => {

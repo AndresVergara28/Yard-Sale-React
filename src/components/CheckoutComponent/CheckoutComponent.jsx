@@ -3,8 +3,11 @@ import "./CheckoutComponent.scss";
 import { CartContext } from "../../context/CartContext";
 import { ShoppingCartItem } from "../AsideShopping/ShoppingCartItem";
 import { useCreateOrder } from "../../hooks/useProducts";
-
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 const CheckoutComponent = () => {
+  const MySwal = withReactContent(Swal);
+
   const { cart, setCart } = useContext(CartContext);
 
   const [firstName, setFirstName] = useState("");
@@ -40,11 +43,24 @@ const CheckoutComponent = () => {
 
     if (cart.length > 0) {
       useCreateOrder(order);
+      MySwal.fire({
+        title: "Pedido Enviado",
+        icon: "success",
+        timer: 2000,
+        showConfirmButton: false,
+      });
       setTimeout(() => {
         document.querySelector(".form").reset();
         setCart([]);
-      }, 1000);
+      }, 2000);
     } else {
+      MySwal.fire({
+        icon: "warning",
+        title: "Carrito de compras vacío",
+        text: "Debes agregar al menos (1) articulo",
+        showConfirmButton: true,
+        timer: 3000,
+      });
       console.log("selecciona por lo menos un producto");
     }
   };
