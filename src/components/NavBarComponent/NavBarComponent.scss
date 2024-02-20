@@ -109,18 +109,12 @@
     .header-container {
 
         .navbar-container {
-
-
-
             .nav-brand {
                 display: flex;
                 align-items: center;
-
                 .menu-mobile-component {
                     display: block;
-
                 }
-
                 .main-logo {
                     margin-left: 2rem;
                 }
@@ -132,9 +126,7 @@
 
             .nav-login {
                 justify-content: end;
-
                 a {
-                    display: none;
                     font-size: 1rem;
                     font-weight: bolder;
                     text-decoration: none;

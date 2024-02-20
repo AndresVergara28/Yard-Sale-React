@@ -6,7 +6,7 @@ import { CartContext } from "../context/CartContext";
 const Home = () => {
   const { productsData } = useContext(CartContext);
 
-  return <CarouselComponent productsData={productsData}/>;
+  return <CarouselComponent productsData={productsData} />;
 };
 
-export default Home;
+export { Home };

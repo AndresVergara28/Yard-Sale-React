@@ -2,7 +2,13 @@ import { useContext, useEffect } from "react";
 import { CartContext } from "../../context/CartContext";
 import CartIcon from "../../icons/icon_shopping_cart.svg";
 import "./CartWidgetComponent.scss";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
+import { LoginComponent } from "../LoginComponent/LoginComponent";
+import { Link } from "react-router-dom";
 const CartWidgetComponent = () => {
+  const MySwal = withReactContent(Swal);
+
   const { cart, asideShoppingCart, asideProductDetail, dropDownMenu } =
     useContext(CartContext);
 
@@ -32,9 +38,9 @@ const CartWidgetComponent = () => {
   return (
     <ul className="cart-widget-container">
       <li className="navbar-email">
-        <a href="#login">
-          <p>ejemplo@login.com</p>
-        </a>
+        <Link to={"/login"}>
+          <button>LOGIN</button>
+        </Link>
       </li>
       <li className="navbar-shopping-cart" onClick={toggleAsideShoppingCart}>
         <img src={CartIcon} alt="shoppingCart" className="img-for-cart" />

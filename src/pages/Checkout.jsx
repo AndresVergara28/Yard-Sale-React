@@ -4,4 +4,4 @@ const Checkout = () => {
   return <CheckoutComponent />;
 };
 
-export default Checkout;
+export { Checkout };

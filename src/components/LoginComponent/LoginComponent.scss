@@ -1,0 +1,68 @@
+.modal-login-component {
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+
+    form {
+        box-shadow: -1px 1px 5px var(--very-light-pink);
+        gap: 1rem;
+        padding: 2rem;
+        border-radius: 1rem;
+        border: 1px solid var(--very-light-pink);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .input-label {
+            width: 100%;
+
+            span {
+                width: 100%;
+                font-size: var(--font-parrafo);
+                text-transform: uppercase;
+                color: var(--very-light-pink);
+
+            }
+
+            input {
+                width: 100%;
+                padding: 0.5rem 1rem;
+                border-radius: 1rem;
+                border: 1px solid var(--very-light-pink);
+                color: var(--very-light-pink);
+
+            }
+
+            p {
+                font-size: var(--font-nota);
+                color: blue;
+                text-decoration: underline;
+
+            }
+        }
+
+        .submit-input {
+            border: 1px solid var(--very-light-pink);
+            border-radius: 1rem;
+            padding: 0.5rem;
+            font-size: var(--font-parrafo);
+            color: var(--very-light-pink)
+        }
+
+        .link-to-register {
+
+            button {
+                width: 100%;
+                @extend .submit-input;
+                background-color: var(--hospital-green);
+                color: var(--white);
+            }
+
+        }
+
+    }
+}
