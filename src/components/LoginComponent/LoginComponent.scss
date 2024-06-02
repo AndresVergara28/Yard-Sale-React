@@ -5,9 +5,11 @@
     justify-content: center;
     align-items: center;
 
-
-
+    
+    
+    
     form {
+        background-color: var(--white);
         box-shadow: -1px 1px 5px var(--very-light-pink);
         gap: 1rem;
         padding: 2rem;
@@ -50,15 +52,16 @@
             border-radius: 1rem;
             padding: 0.5rem;
             font-size: var(--font-parrafo);
-            color: var(--very-light-pink)
+            color: var(--white);
+            background-color: var(--hospital-green);
+        
         }
 
         .link-to-register {
-
             button {
                 width: 100%;
                 @extend .submit-input;
-                background-color: var(--hospital-green);
+                background-color: var(--very-light-pink);
                 color: var(--white);
             }
 

@@ -1,25 +1,24 @@
 import Navbar from "react-bootstrap/Navbar";
 import MainLogo from "./logo_yard_sale.svg";
-import { CartWidgetComponent } from "./CartWidgetComponent";
+import { CartWidgetComponent } from "./CartWidgetComponent/CartWidgetComponent";
 import "./NavBarComponent.scss";
 import { Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
-import MenuMobile from "./MenuMobile";
+import MenuMobile from "./MenuMobileComponent/MenuMobile";
 
 const NavBarComponent = () => {
   const { categories } = useContext(CartContext);
 
   return (
-    <div className="header-container">
+    <header className="header-container">
       <Navbar className="navbar-container">
         <Navbar.Brand className="nav-brand">
           <MenuMobile categories={categories} />
           <Link to={"./"}>
-            <img src={MainLogo} alt="MainLogo" className="main-logo"/>
+            <img src={MainLogo} alt="MainLogo" className="main-logo" />
           </Link>
-
         </Navbar.Brand>
         <Nav className="nav-links">
           <Nav.Link className="links-item">
@@ -41,10 +40,10 @@ const NavBarComponent = () => {
           </NavDropdown>
         </Nav>
         <Navbar.Collapse className="nav-login">
-          <CartWidgetComponent/>
+          <CartWidgetComponent />
         </Navbar.Collapse>
       </Navbar>
-    </div>
+    </header>
   );
 };
 

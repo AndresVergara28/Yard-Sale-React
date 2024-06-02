@@ -49,10 +49,12 @@ const CheckoutComponent = () => {
         timer: 2000,
         showConfirmButton: false,
       });
+
       setTimeout(() => {
         document.querySelector(".form").reset();
         setCart([]);
       }, 2000);
+      
     } else {
       MySwal.fire({
         icon: "warning",

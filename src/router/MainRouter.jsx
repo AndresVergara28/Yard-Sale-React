@@ -18,7 +18,6 @@ export const MainRouter = () => {
   return (
     <BrowserRouter>
       <NavBarComponent />
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<All />} />

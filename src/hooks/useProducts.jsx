@@ -11,8 +11,16 @@ import {
   addDoc,
 } from "firebase/firestore";
 
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
+
 export const useGetAllProducts = () => {
   const [productsData, setProductsData] = useState([]);
+
   useEffect(() => {
     const db = getFirestore();
     const productsCollection = collection(db, "products");
@@ -36,10 +44,28 @@ export const useGetCategories = () => {
       : false;
 
     if (!isCategoryInCategories) {
-      categories.push(category);
+      setCategories([...categories, category]);
     }
   });
   return { categories };
+};
+
+
+
+export const useCheckStatus = (user) => {
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/auth.user
+      const uid = user.uid;
+      console.log(uid);
+      // ...
+    } else {
+      // User is signed out
+      // ...
+    }
+  });
 };
 
 export const useGetProductsByCategory = (category) => {

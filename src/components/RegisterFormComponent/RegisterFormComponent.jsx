@@ -1,23 +1,77 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  updateProfile,
+} from "firebase/auth";
 
 const RegisterFormComponent = () => {
+  const MySwal = withReactContent(Swal);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  console.log(firstName, lastName, email, password);
+  const registerUser = (e) => {
+    e.preventDefault();
+
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        MySwal.fire({
+          title: "Registro Exitoso",
+          icon: "success",
+          timer: 2000,
+          showCloseButton: true,
+        });
+
+        updateProfile(user, {
+          displayName: `${firstName} ${lastName}`,
+          photoURL: "https://example.com/jane-q-user/profile.jpg",
+        })
+          .then(() => {
+            // Profile updated!
+            // ...
+          })
+          .catch((error) => {
+            // An error occurred
+            // ...
+          });
+
+        document.querySelector(".form").reset();
+
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        MySwal.fire({
+          title: "Usuario ya registrado",
+          icon: "error",
+          timer: 2000,
+          showCloseButton: true,
+        });
+        // ..
+      });
+  };
+
   return (
     <div className="modal-login-component">
-      <form action="">
-        <label for="email" className="input-label">
+      <form action="" className="form" onSubmit={registerUser}>
+        <label for="name" className="input-label">
           <span>Name</span>
           <input
-            type="email"
-            name="email"
-            id="email"
+            type="name"
+            name="name"
+            id="name"
             placeholder="Primer nombre"
-            autoComplete="name"
+            autoComplete="cc-given-name"
             required
             onChange={(e) => {
               setFirstName(e.target.value);
@@ -31,7 +85,7 @@ const RegisterFormComponent = () => {
             name="lastName"
             id="lastName"
             placeholder="Segundo Nombre"
-            autoComplete="password"
+            autoComplete="family-name"
             required
             onChange={(e) => {
               setLastName(e.target.value);
@@ -53,12 +107,12 @@ const RegisterFormComponent = () => {
           />
         </label>
         <label for="password" className="input-label">
-          <span>Last name</span>
+          <span>Password</span>
           <input
             type="password"
             name="password"
             id="password"
-            placeholder="*******"
+            placeholder="***********"
             autoComplete="password"
             required
             onChange={(e) => {
@@ -66,14 +120,19 @@ const RegisterFormComponent = () => {
             }}
           />
         </label>
+        <input type="submit" value="Registrar" className="submit-input" />
         <input
-          type="submit"
-          value="REGISTRAR"
+          type="reset"
+          value="Limpiar"
           className="submit-input"
-          onClick={(e) => {
-            e.preventDefault();
+          style={{
+            backgroundColor: "var(--very-light-pink)",
           }}
         />
+
+        <Link to="/login">
+          <p>volver</p>
+        </Link>
       </form>
     </div>
   );

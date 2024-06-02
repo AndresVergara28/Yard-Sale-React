@@ -1,12 +1,8 @@
-import CarouselComponent from "../components/CarouselComponent/CarouselComponent";
-
 import React, { useContext } from "react";
-import { CartContext } from "../context/CartContext";
+import { BriefComponent } from "../components/BriefComponent/BriefComponent";
 
 const Home = () => {
-  const { productsData } = useContext(CartContext);
-
-  return <CarouselComponent productsData={productsData} />;
+  return <BriefComponent></BriefComponent>;
 };
 
-export { Home };
+export { Home };  

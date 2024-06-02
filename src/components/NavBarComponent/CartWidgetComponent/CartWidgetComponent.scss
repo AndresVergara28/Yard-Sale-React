@@ -4,19 +4,7 @@
     align-items: center;
     padding-top: 1rem;
 
-    .navbar-email {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
 
-        button {
-            padding: 1rem;
-            border: 1px solid var(--very-light-pink);
-            border-radius: 1rem;
-            font-weight: bold;
-        }
-
-    }
 
 
 
@@ -26,7 +14,7 @@
         position: relative;
 
         .img-for-cart {
-            width: 2.5rem;
+            width: var(--md-size);
         }
 
         .number-over-cart {

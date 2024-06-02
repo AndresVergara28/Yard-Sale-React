@@ -7,6 +7,7 @@ const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [isLoginIn, setLoginIn] = useState(false);
   const [productInAside, setProductInAside] = useState({});
   const { productsData } = useGetAllProducts();
   const { categories } = useGetCategories();
@@ -64,12 +65,14 @@ const CartProvider = ({ children }) => {
       value={{
         productsData,
         cart,
+        isLoginIn,
         productInAside,
         categories,
         asideProductDetail,
         asideShoppingCart,
         dropDownMenu,
         setCart,
+        setLoginIn,
         setProductInAside,
         addToCartFunction,
       }}
