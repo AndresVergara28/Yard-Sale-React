@@ -2,7 +2,12 @@ import React, { useContext, useState } from "react";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 import { CartContext } from "../../context/CartContext";
 import "./LoginComponent.scss";
 
@@ -11,8 +16,8 @@ const LoginComponent = () => {
   const auth = getAuth();
   const [userID, setUserID] = useState("");
   const [password, setPassword] = useState("");
-  const { isLoginIn, setLoginIn } = useContext(CartContext);
-  const [usuario, setUsuario] = useState(null);
+  const { isLoginIn, setLoginIn, usuario, setUsuario } =
+    useContext(CartContext);
 
   // funcion para iniciar sesion con usuario
   const loginUser = (e) => {
@@ -21,21 +26,35 @@ const LoginComponent = () => {
     signInWithEmailAndPassword(auth, userID, password)
       .then((userCredential) => {
         // Signed in
-        const user = userCredential.user.email;
-        setLoginIn(true);
+        setUsuario({
+          email: userCredential.user.email,
+          name: userCredential.user.displayName,
+        });
 
         MySwal.fire({
-          position: "top-end",
+          position: "center",
           icon: "success",
           title: "You are logged in",
-          showConfirmButton: false,
-          timer: 1500,
+          showConfirmButton: true,
+        }).then(() => {
+          setLoginIn(true);
+        });
+
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            // User is signed in, see docs for a list of available properties
+            // https://firebase.google.com/docs/reference/js/auth.user
+            const uid = user.uid;
+            // ...
+          } else {
+            // User is signed out
+            // ...
+          }
         });
 
         // ...
       })
       .catch((error) => {
-        console.log("no verificado");
         const errorCode = error.code;
         const errorMessage = error.message;
 
@@ -47,7 +66,6 @@ const LoginComponent = () => {
           timer: 1500,
         });
       });
-    setUsuario(auth.currentUser);
   };
 
   return (
@@ -80,7 +98,16 @@ const LoginComponent = () => {
               setPassword(e.target.value);
             }}
           />
-          <p>Forgot your password?</p>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+          >
+            mirar contraseña
+          </button>
+          <Link to={"/forgot-password"}>
+            <p>Forgot your password?</p>
+          </Link>
         </label>
         <input type="submit" value="Ingresar" className="submit-input" />
         <Link to={"/register"} className="link-to-register">

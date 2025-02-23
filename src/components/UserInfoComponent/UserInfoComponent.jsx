@@ -23,7 +23,7 @@ const UserInfoComponent = () => {
     }
   });
 
-  return <div>aqui vamos a poner la info del usuario {name} </div>;
+  return <div>aqui vamos a poner la info del usuario {name} </div>
 };
 
 export { UserInfoComponent };

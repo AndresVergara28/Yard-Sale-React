@@ -26,15 +26,39 @@
         }
 
         .nav-links {
-            .links-item {
+            .links_item {
                 color: var(--very-light-pink);
                 font-size: 1.4rem;
                 border: 1px solid var(--white);
                 border-radius: 8px;
 
+            }
+
+            .links_item--all {
+                a {
+                    color: var(--very-light-pink);
+                }
+
                 &:hover {
-                    color: var(--hospital-green);
                     border: 1px solid var(--very-light-pink);
+
+                    a {
+                        color: var(--hospital-green);
+
+                    }
+                }
+            }
+
+            .links_item--categories {
+                a{
+                    color: var(--very-light-pink);
+
+                }
+
+                &:hover {
+                    border: 1px solid var(--very-light-pink);
+
+                  
                 }
             }
 

@@ -5,6 +5,7 @@ import withReactContent from "sweetalert2-react-content";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  sendEmailVerification,
   updateProfile,
 } from "firebase/auth";
 
@@ -28,6 +29,11 @@ const RegisterFormComponent = () => {
           icon: "success",
           timer: 2000,
           showCloseButton: true,
+        });
+
+        sendEmailVerification(user).catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
         });
 
         updateProfile(user, {

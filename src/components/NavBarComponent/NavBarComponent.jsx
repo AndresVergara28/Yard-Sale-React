@@ -21,18 +21,18 @@ const NavBarComponent = () => {
           </Link>
         </Navbar.Brand>
         <Nav className="nav-links">
-          <Nav.Link className="links-item">
+          <Nav.Link className="links_item links_item--all">
             <Link to={"/products"}> All </Link>
           </Nav.Link>
 
           <NavDropdown
-            className="links-item"
+            className="links_item links_item--categories"
             title="Categories"
             id="basic-nav-dropdown"
           >
             {categories.map((category) => {
               return (
-                <NavDropdown.Item key={category}>
+                <NavDropdown.Item key={category} className="links_item--all">
                   <Link to={`./products/category/${category}`}>{category}</Link>
                 </NavDropdown.Item>
               );

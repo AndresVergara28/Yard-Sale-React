@@ -9,6 +9,7 @@ const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [isLoginIn, setLoginIn] = useState(false);
   const [productInAside, setProductInAside] = useState({});
+  const [usuario, setUsuario] = useState({});
   const { productsData } = useGetAllProducts();
   const { categories } = useGetCategories();
   const MySwal = withReactContent(Swal);
@@ -16,6 +17,7 @@ const CartProvider = ({ children }) => {
   const asideShoppingCart = document.querySelector("#shoppingCart");
   const asideProductDetail = document.querySelector("#productDetail");
   const dropDownMenu = document.querySelector("#dropDownMenu");
+  const dropDownUserMenu = document.querySelector("#dropDownUserMenu");
 
   function addToCartFunction(product) {
     const item = {
@@ -68,11 +70,14 @@ const CartProvider = ({ children }) => {
         isLoginIn,
         productInAside,
         categories,
+        usuario,
         asideProductDetail,
         asideShoppingCart,
         dropDownMenu,
+        dropDownUserMenu,
         setCart,
         setLoginIn,
+        setUsuario,
         setProductInAside,
         addToCartFunction,
       }}

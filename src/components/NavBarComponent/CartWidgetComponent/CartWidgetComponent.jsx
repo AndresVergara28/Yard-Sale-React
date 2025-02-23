@@ -6,8 +6,8 @@ import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import { LoginComponent } from "../../LoginComponent/LoginComponent";
 import { Link } from "react-router-dom";
-import { UsuarioComponent } from "./UsuarioComponent/UsuarioComponent";
-import { LogearseComponent } from "./LogearseComponent/LogearseComponent";
+import { UsuarioComponent } from "../UsuarioComponent/UsuarioComponent";
+import { LogearseComponent } from "../LogearseComponent/LogearseComponent";
 const CartWidgetComponent = () => {
   const MySwal = withReactContent(Swal);
 
@@ -17,6 +17,8 @@ const CartWidgetComponent = () => {
     asideProductDetail,
     isLoginIn,
     dropDownMenu,
+    dropDownUserMenu,
+    usuario,
   } = useContext(CartContext);
 
   const toggleAsideShoppingCart = (e) => {
@@ -32,9 +34,20 @@ const CartWidgetComponent = () => {
       ? false
       : true;
 
-    if (isAsideProductDetailOpened || isDropDownMenuOpened) {
+    const isDropDownUserMenuOpened = dropDownUserMenu.classList.contains(
+      "inactive"
+    )
+      ? false
+      : true;
+
+    if (
+      isAsideProductDetailOpened ||
+      isDropDownMenuOpened ||
+      isDropDownUserMenuOpened
+    ) {
       asideProductDetail.classList.add("dd-aside-description-product");
       dropDownMenu.classList.add("inactive");
+      dropDownUserMenu.classList.add("inactive");
 
       asideShoppingCart.classList.toggle("dd-aside-shopping-cart");
     } else {
@@ -46,7 +59,7 @@ const CartWidgetComponent = () => {
     <ul className="cart-widget-container">
       <li className="navbar-email">
         {isLoginIn ? (
-          <UsuarioComponent nombre={"Andres"} />
+          <UsuarioComponent nombre={usuario.email} />
         ) : (
           <LogearseComponent />
         )}
