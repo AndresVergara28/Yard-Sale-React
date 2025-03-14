@@ -1,25 +1,21 @@
 import { useContext, useEffect } from "react";
-import { CartContext } from "../../../context/CartContext";
-import CartIcon from "../../../icons/icon_shopping_cart.svg";
+import { CartContext } from "../../context/CartContext";
+import CartIcon from "../../icons/icon_shopping_cart.svg";
 import "./CartWidgetComponent.scss";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
-import { LoginComponent } from "../../LoginComponent/LoginComponent";
-import { Link } from "react-router-dom";
 import { UsuarioComponent } from "../UsuarioComponent/UsuarioComponent";
 import { LogearseComponent } from "../LogearseComponent/LogearseComponent";
+import { ToggleContext } from "../../context/ToggleContext";
+
 const CartWidgetComponent = () => {
   const MySwal = withReactContent(Swal);
 
-  const {
-    cart,
-    asideShoppingCart,
-    asideProductDetail,
-    isLoginIn,
-    dropDownMenu,
-    dropDownUserMenu,
-    usuario,
-  } = useContext(CartContext);
+  const { cart, isLoginIn, dropDownMenu, dropDownUserMenu, usuario } =
+    useContext(CartContext);
+
+  const { cartASide, setCartAside, toggleCartAside } =
+    useContext(ToggleContext);
 
   const toggleAsideShoppingCart = (e) => {
     e.preventDefault();
@@ -34,7 +30,7 @@ const CartWidgetComponent = () => {
       ? false
       : true;
 
-    const isDropDownUserMenuOpened = dropDownUserMenu.classList.contains(
+    const isDropDownUserMenuOpened = dropDownUserMenu.className.contains(
       "inactive"
     )
       ? false
@@ -64,7 +60,7 @@ const CartWidgetComponent = () => {
           <LogearseComponent />
         )}
       </li>
-      <li className="navbar-shopping-cart" onClick={toggleAsideShoppingCart}>
+      <li className="navbar-shopping-cart" onClick={toggleCartAside}>
         <img src={CartIcon} alt="shoppingCart" className="img-for-cart" />
         <div className="number-over-cart">{cart.length}</div>
       </li>
@@ -72,4 +68,4 @@ const CartWidgetComponent = () => {
   );
 };
 
-export { CartWidgetComponent };
+export default CartWidgetComponent;

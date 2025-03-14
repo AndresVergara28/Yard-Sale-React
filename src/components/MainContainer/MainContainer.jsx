@@ -1,6 +1,6 @@
 import React from "react";
 import "./MainContainer.scss";
-import { ItemCart } from "./ItemCart";
+import { ItemCart } from "../ItemCart/ItemCart";
 
 const MainContainer = ({ productsData }) => {
   return (
@@ -10,7 +10,7 @@ const MainContainer = ({ productsData }) => {
           {productsData.map((product) => {
             return <ItemCart key={product.id} product={product} />;
           })}
-        </div>  
+        </div>
       </section>
     </>
   );

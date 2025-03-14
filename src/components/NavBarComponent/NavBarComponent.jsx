@@ -1,12 +1,14 @@
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+
 import Navbar from "react-bootstrap/Navbar";
 import MainLogo from "./logo_yard_sale.svg";
-import { CartWidgetComponent } from "./CartWidgetComponent/CartWidgetComponent";
-import "./NavBarComponent.scss";
+
 import { Nav, NavDropdown } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { useContext } from "react";
+import "./NavBarComponent.scss";
 import { CartContext } from "../../context/CartContext";
-import MenuMobile from "./MenuMobileComponent/MenuMobile";
+import { MenuMobile } from "../MenuMobileComponent/MenuMobile";
+import CartWidgetComponent from "../CartWidgetComponent/CartWidgetComponent";
 
 const NavBarComponent = () => {
   const { categories } = useContext(CartContext);

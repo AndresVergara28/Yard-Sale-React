@@ -1,23 +1,25 @@
-import { React, createContext, useState } from "react";
+import { React, createContext, useContext, useEffect, useState } from "react";
 import { useGetAllProducts, useGetCategories } from "../hooks/useProducts";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { ToggleContext } from "./ToggleContext";
 
 const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+  // call of user interface components
+  const { cartAside, setCartAside, setProductDetailAside } =
+    useContext(ToggleContext);
+
+  //internal states
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
   const [isLoginIn, setLoginIn] = useState(false);
-  const [productInAside, setProductInAside] = useState({});
   const [usuario, setUsuario] = useState({});
   const { productsData } = useGetAllProducts();
   const { categories } = useGetCategories();
   const MySwal = withReactContent(Swal);
-
-  const asideShoppingCart = document.querySelector("#shoppingCart");
-  const asideProductDetail = document.querySelector("#productDetail");
-  const dropDownMenu = document.querySelector("#dropDownMenu");
-  const dropDownUserMenu = document.querySelector("#dropDownUserMenu");
 
   function addToCartFunction(product) {
     const item = {
@@ -29,6 +31,7 @@ const CartProvider = ({ children }) => {
       img: product.thumbnail,
       total: product.total,
     };
+
     MySwal.fire({
       title: `${product.title} añadido`,
       icon: "success",
@@ -37,8 +40,8 @@ const CartProvider = ({ children }) => {
       showConfirmButton: false,
       timer: 1000,
     }).then(() => {
-      asideShoppingCart.classList.remove("dd-aside-shopping-cart");
-      asideProductDetail.classList.add("dd-aside-description-product");
+      setCartAside(true);
+      setProductDetailAside(false);
       const isItemInCart = cart.find((el) => el.id === item.id) ? true : false;
 
       if (isItemInCart) {
@@ -54,10 +57,12 @@ const CartProvider = ({ children }) => {
           }
         });
         setCart(newCart);
+        localStorage.setItem("cart", JSON.stringify(newCart));
       } else {
         const newCart = [...cart];
         newCart.push(item);
         setCart(newCart);
+        localStorage.setItem("cart", JSON.stringify(newCart));
       }
     });
   }
@@ -68,17 +73,11 @@ const CartProvider = ({ children }) => {
         productsData,
         cart,
         isLoginIn,
-        productInAside,
         categories,
         usuario,
-        asideProductDetail,
-        asideShoppingCart,
-        dropDownMenu,
-        dropDownUserMenu,
         setCart,
         setLoginIn,
         setUsuario,
-        setProductInAside,
         addToCartFunction,
       }}
     >

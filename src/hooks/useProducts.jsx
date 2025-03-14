@@ -11,12 +11,7 @@ import {
   addDoc,
 } from "firebase/firestore";
 
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-} from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export const useGetAllProducts = () => {
   const [productsData, setProductsData] = useState([]);
@@ -49,8 +44,6 @@ export const useGetCategories = () => {
   });
   return { categories };
 };
-
-
 
 export const useCheckStatus = (user) => {
   const auth = getAuth();

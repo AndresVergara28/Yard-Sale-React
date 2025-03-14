@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import MenuMobileIco from "./icon_menu.svg";
 import { Link } from "react-router-dom";
-import { CartContext } from "../../../context/CartContext";
+import { CartContext } from "../../context/CartContext";
 import "./MenuMobile.scss";
 
 const MenuMobile = ({ categories }) => {
@@ -73,4 +73,4 @@ const MenuMobile = ({ categories }) => {
   );
 };
 
-export default MenuMobile;
+export { MenuMobile };

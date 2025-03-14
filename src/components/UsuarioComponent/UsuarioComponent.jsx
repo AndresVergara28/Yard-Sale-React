@@ -2,7 +2,7 @@ import React, { createContext, useContext } from "react";
 import UserSvg from "./person.svg";
 import "./UsuarioComponent.scss";
 import { Link } from "react-router-dom";
-import { CartContext } from "../../../context/CartContext";
+import { CartContext } from "../../context/CartContext";
 
 const UsuarioComponent = ({ nombre }) => {
   const { isLoginIn, setLoginIn } = useContext(CartContext);

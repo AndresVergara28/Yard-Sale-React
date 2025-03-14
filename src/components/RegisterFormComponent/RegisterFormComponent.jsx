@@ -56,9 +56,11 @@ const RegisterFormComponent = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.log(errorMessage, errorCode);
 
         MySwal.fire({
           title: "Usuario ya registrado",
+          text: errorMessage,
           icon: "error",
           timer: 2000,
           showCloseButton: true,

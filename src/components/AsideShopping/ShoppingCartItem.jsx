@@ -29,9 +29,9 @@ const ShoppingCartItem = ({ product }) => {
       confirmButtonColor: "#ACD9B2",
     }).then((resp) => {
       MySwal.fire({
-        title:"Item Removido",
-        icon:"success"
-      })
+        title: "Item Removido",
+        icon: "success",
+      });
       if (resp.isConfirmed) {
         const newCart = [...cart];
         const getIndex = (id) => {
@@ -45,11 +45,12 @@ const ShoppingCartItem = ({ product }) => {
         const position = getIndex(product.id);
         newCart.splice(position, 1);
         setCart(newCart);
-      }else{
+        localStorage.setItem("cart", JSON.stringify(newCart));
+      } else {
         MySwal.fire({
-          title:"Item NO removido",
-          icon:"error"
-        })
+          title: "Item NO removido",
+          icon: "error",
+        });
       }
     });
   };
@@ -68,6 +69,7 @@ const ShoppingCartItem = ({ product }) => {
       }
     });
     setCart(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
   };
 
   const remOne = (e) => {
@@ -85,6 +87,7 @@ const ShoppingCartItem = ({ product }) => {
         }
       });
       setCart(newCart);
+      localStorage.setItem("cart", JSON.stringify(newCart));
     }
   };
 
