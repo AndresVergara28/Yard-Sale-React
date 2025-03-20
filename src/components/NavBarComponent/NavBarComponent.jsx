@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import MainLogo from "./logo_yard_sale.svg";
 
-import { Nav, NavDropdown } from "react-bootstrap";
+import { Nav, NavDropdown, NavItem, NavLink } from "react-bootstrap";
 import "./NavBarComponent.scss";
 import { CartContext } from "../../context/CartContext";
 import { MenuMobile } from "../MenuMobileComponent/MenuMobile";
@@ -23,9 +23,9 @@ const NavBarComponent = () => {
           </Link>
         </Navbar.Brand>
         <Nav className="nav-links">
-          <Nav.Link className="links_item links_item--all">
+          <NavLink className="links_item links_item--all">
             <Link to={"/products"}> All </Link>
-          </Nav.Link>
+          </NavLink>
 
           <NavDropdown
             className="links_item links_item--categories"

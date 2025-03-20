@@ -4,7 +4,7 @@ import "./LogearseComponent.scss";
 
 const LogearseComponent = () => {
   return (
-    <Link to="/login" className="logearse-widget">
+    <Link to="/my-profile" className="logearse-widget">
       Login
     </Link>
   );

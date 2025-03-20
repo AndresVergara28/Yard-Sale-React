@@ -17,21 +17,21 @@ const AsideShopping = () => {
         cartAside ? "" : "dd-aside-shopping-cart"
       } shopping-cart-container`}
     >
-      <div class="title-container" onClick={toggleCartAside}>
+      <div className="title-container" onClick={toggleCartAside}>
         <img
           src={ArrowClose}
           alt="arrow"
           className="title-container-backLogo"
         />
-        <p class="title-container-title">My orders</p>
+        <p className="title-container-title">My orders</p>
       </div>
       <div className="shopping-cart-list">
         {cart.map((product) => {
           return <ShoppingCartItem key={product.id} product={product} />;
         })}
       </div>
-      <div class="my-order-content">
-        <div class="order">
+      <div className="my-order-content">
+        <div className="order">
           <p className="order-total-title">
             <span>Total</span>
           </p>
@@ -41,7 +41,9 @@ const AsideShopping = () => {
           </p>
         </div>
         <Link to={"/checkout"} onClick={toggleCartAside}>
-          <button class="primary-button add-to-cart-button">Checkout</button>
+          <button className="primary-button add-to-cart-button">
+            Checkout
+          </button>
         </Link>
       </div>
     </aside>

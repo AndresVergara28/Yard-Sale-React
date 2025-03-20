@@ -11,51 +11,16 @@ import { ToggleContext } from "../../context/ToggleContext";
 const CartWidgetComponent = () => {
   const MySwal = withReactContent(Swal);
 
-  const { cart, isLoginIn, dropDownMenu, dropDownUserMenu, usuario } =
+  const { cart, isLoginIn, dropDownMenu, dropDownUserMenu, user } =
     useContext(CartContext);
 
-  const { cartASide, setCartAside, toggleCartAside } =
-    useContext(ToggleContext);
-
-  const toggleAsideShoppingCart = (e) => {
-    e.preventDefault();
-
-    const isAsideProductDetailOpened = asideProductDetail.classList.contains(
-      "dd-aside-description-product"
-    )
-      ? false
-      : true;
-
-    const isDropDownMenuOpened = dropDownMenu.classList.contains("inactive")
-      ? false
-      : true;
-
-    const isDropDownUserMenuOpened = dropDownUserMenu.className.contains(
-      "inactive"
-    )
-      ? false
-      : true;
-
-    if (
-      isAsideProductDetailOpened ||
-      isDropDownMenuOpened ||
-      isDropDownUserMenuOpened
-    ) {
-      asideProductDetail.classList.add("dd-aside-description-product");
-      dropDownMenu.classList.add("inactive");
-      dropDownUserMenu.classList.add("inactive");
-
-      asideShoppingCart.classList.toggle("dd-aside-shopping-cart");
-    } else {
-      asideShoppingCart.classList.toggle("dd-aside-shopping-cart");
-    }
-  };
+  const { toggleCartAside } = useContext(ToggleContext);
 
   return (
     <ul className="cart-widget-container">
       <li className="navbar-email">
         {isLoginIn ? (
-          <UsuarioComponent nombre={usuario.email} />
+          <UsuarioComponent nombre={user.email} />
         ) : (
           <LogearseComponent />
         )}

@@ -1,77 +1,30 @@
 import React, { useContext, useState } from "react";
-import withReactContent from "sweetalert2-react-content";
-import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-import {
-  getAuth,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut,
-} from "firebase/auth";
-import { CartContext } from "../../context/CartContext";
+
 import "./LoginComponent.scss";
+import { CartContext } from "../../context/CartContext";
 
 const LoginComponent = () => {
-  const MySwal = withReactContent(Swal);
-  const auth = getAuth();
-  const [userID, setUserID] = useState("");
-  const [password, setPassword] = useState("");
-  const { isLoginIn, setLoginIn, usuario, setUsuario } =
-    useContext(CartContext);
-
-  // funcion para iniciar sesion con usuario
-  const loginUser = (e) => {
-    e.preventDefault();
-
-    signInWithEmailAndPassword(auth, userID, password)
-      .then((userCredential) => {
-        // Signed in
-        setUsuario({
-          email: userCredential.user.email,
-          name: userCredential.user.displayName,
-        });
-
-        MySwal.fire({
-          position: "center",
-          icon: "success",
-          title: "You are logged in",
-          showConfirmButton: true,
-        }).then(() => {
-          setLoginIn(true);
-        });
-
-        onAuthStateChanged(auth, (user) => {
-          if (user) {
-            // User is signed in, see docs for a list of available properties
-            // https://firebase.google.com/docs/reference/js/auth.user
-            const uid = user.uid;
-            // ...
-          } else {
-            // User is signed out
-            // ...
-          }
-        });
-
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-
-        MySwal.fire({
-          position: "top-end",
-          icon: "error",
-          title: "wrong password",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      });
-  };
+  const {
+    user,
+    setUser,
+    password,
+    setPassword,
+    username,
+    setUsername,
+    loginUser,
+    setLoginIn,
+  } = useContext(CartContext);
 
   return (
     <div className="modal-login-component">
-      <form action="" onSubmit={loginUser}>
-        <label for="email" className="input-label">
+      <form
+        action=""
+        onSubmit={(e) => {
+          loginUser(e, username, password, setLoginIn);
+        }}
+      >
+        <label htmlFor="email" className="input-label">
           <span>USUARIO</span>
           <input
             type="email"
@@ -81,11 +34,11 @@ const LoginComponent = () => {
             autoComplete="email"
             required
             onChange={(e) => {
-              setUserID(e.target.value);
+              setUsername(e.target.value);
             }}
           />
         </label>
-        <label for="password" className="input-label">
+        <label htmlFor="password" className="input-label">
           <span>contraseña</span>
           <input
             type="password"

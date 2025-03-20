@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import {
   collection,
@@ -12,21 +12,33 @@ import {
 } from "firebase/firestore";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { CartContext } from "../context/CartContext";
 
-export const useGetAllProducts = () => {
+export const useProductsActions = () => {
   const [productsData, setProductsData] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const db = getFirestore();
     const productsCollection = collection(db, "products");
-
     getDocs(productsCollection).then((snapshot) => {
       setProductsData(
         snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
       );
     });
   }, []);
-  return { productsData };
+
+  productsData.map((el) => {
+    const category = el.category;
+    const isCategoryInCategories = categories.find((el) => el === category)
+      ? true
+      : false;
+
+    if (!isCategoryInCategories) {
+      setCategories([...categories, category]);
+    }
+  });
+  return { productsData, categories };
 };
 
 export const useGetCategories = () => {
@@ -85,4 +97,8 @@ export const useCreateOrder = (order) => {
   const db = getFirestore();
   const ordersCollection = collection(db, "orders");
   addDoc(ordersCollection, order);
+};
+
+export const updateAndState = () => {
+  setCart;
 };
